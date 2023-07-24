@@ -9,6 +9,7 @@ var incorrectAns = 0;
 var right = document.getElementById('right');
 var wrong = document.getElementById('wrong');
 var countdown;
+var input;
 
 // TIMER/TIMEOUT FUNCTIONALITY //
 var seconds = 60;
@@ -30,7 +31,7 @@ countdown = setInterval(function () {
 function renderLastScore() {
     var lastScore = JSON.parse(localStorage.getItem("yourScore"));
     if (lastScore !== null) {
-    document.getElementById("saved-initials").innerHTML = lastScore.initials;
+    document.getElementById("saved-initials").innerHTML = lastScore.Initials;
     document.getElementById("saved-score").innerHTML = (lastScore.Score + " %");
     
     } else {
@@ -51,7 +52,8 @@ function renderLastScore() {
     <input type="text" class="quiz-end" id="input" placeholder="Enter Initials">
     <button id="score">Enter</button>`
    
-    // STORE SCORE & INITIALS
+    // STORE SCORE & INITIALS //
+    var input = document.getElementById("input");
     var enterScore = document.getElementById("score");
     enterScore.addEventListener("click", function(event) {
         event.preventDefault();
@@ -156,6 +158,37 @@ var showQuestion = [
                 ansD.addEventListener("click", correct)
                 }
 ]
+
+function correct() {
+    // REMOVE HIDE CLASS //
+    right.classList.remove('hide');
+    correctAns++;
+    quizIndex++;
+    // DELAY 1 SECOND //
+    setTimeout(() => {
+        right.classList.add('hide');
+        if (quizIndex === quiz.length) {
+            quizEnd()
+        }
+        showQuestion[quizIndex]();
+      }, "1000");   
+};
+
+function incorrect() {
+    // REMOVE HIDE CLASS //
+    wrong.classList.remove('hide');
+    incorrectAns++;
+    quizIndex++;
+    seconds = seconds-5;
+    // DELAY 1 SECOND //
+    setTimeout(() => {
+        wrong.classList.add('hide');
+        if (quizIndex === quiz.length) {
+            quizEnd()
+        }
+        showQuestion[quizIndex]();
+      }, "1000");
+ };
 
 // START TIMER/QUIZ //
 startBtn.addEventListener("click", showQuestion[0]);
