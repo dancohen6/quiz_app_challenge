@@ -5,12 +5,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Coding Quiz</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
-    
+    <h1 class="text-center"></h1>
+    <h3 id="timer" class="text-center">Timer: 60</h3>
+</header>
+<div class="timer-modifier"></div>
 
+<div class="quiz-wrapper">
+    <h4>SHOW US WHAT YOU GOT.</h4>
+    <p>To begin, press the START button. You will have 1 minute to complete the quiz. But be careful, a wrong answer will cost you 10 seconds. Good luck!</p>
+    <button id="start">START</button>
+</div>
+<div class="answer">
+    <h5 class="hide" id="right">Correct!</h5>
+    <h5 class ="hide" id="wrong">Wrong!    -10 seconds</h5>
+</div>
+
+<div class="scores">
+    <h2>Your Last Score</h2>
+    <h3>Initials: <span id="saved-name"></span></h3>
+    <h3>Score: <span id="saved-grade"></span></h3>
+</div>
 </body>
 
 </html>
